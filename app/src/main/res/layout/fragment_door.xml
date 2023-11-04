@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/swipe"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.door.DoorFragment">
+    tools:context=".presentation.door.DoorFragment">
+
+  <com.facebook.shimmer.ShimmerFrameLayout
+      android:id="@+id/shimmer"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+      <include layout="@layout/item_door" />
+
+      <include layout="@layout/item_door" />
+
+      <include layout="@layout/item_door" />
+
+      <include layout="@layout/item_door" />
+    </LinearLayout>
+  </com.facebook.shimmer.ShimmerFrameLayout>
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/rv_door"
       android:layout_width="match_parent"
@@ -13,4 +32,4 @@
       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
       tools:listitem="@layout/item_door"
     />
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>

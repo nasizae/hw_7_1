@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.house
+package com.example.myapplication.presentation.house
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

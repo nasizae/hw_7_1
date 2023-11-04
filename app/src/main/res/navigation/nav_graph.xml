@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/myHouseFragment"
-        android:name="com.example.myapplication.ui.house.MyHouseFragment"
+        android:name="com.example.myapplication.presentation.house.MyHouseFragment"
         android:label="fragment_my_house"
         tools:layout="@layout/fragment_my_house" />
     <fragment
         android:id="@+id/cameraFragment"
-        android:name="com.example.myapplication.ui.camera.CameraFragment"
+        android:name="com.example.myapplication.presentation.room.RoomFragment"
         android:label="fragment_camera"
-        tools:layout="@layout/fragment_camera" />
+        tools:layout="@layout/fragment_room" />
     <fragment
         android:id="@+id/doorFragment"
-        android:name="com.example.myapplication.ui.door.DoorFragment"
+        android:name="com.example.myapplication.presentation.door.DoorFragment"
         android:label="fragment_door"
         tools:layout="@layout/fragment_door" />
 </navigation>

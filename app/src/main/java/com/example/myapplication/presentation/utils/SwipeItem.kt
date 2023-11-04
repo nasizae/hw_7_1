@@ -1,4 +1,4 @@
-package com.example.myapplication.utils
+package com.example.myapplication.presentation.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -131,7 +131,6 @@ abstract class SwipeItem (
                 swiped = position
                 recoverSwipedItem()
            }
-
            abstract fun instantiateUnderlayButton(position: Int): List<Button>
            class Button(
                 private val context: Context,
@@ -140,11 +139,9 @@ abstract class SwipeItem (
                 @DrawableRes private val src: Int,
            ) {
                 private var clickableRegion: RectF? = null
-                private val textSizeInPixel: Float =
-                     textSize * context.resources.displayMetrics.density // dp to px
+                private val textSizeInPixel: Float = textSize * context.resources.displayMetrics.density // dp to px
                 private val horizontalPadding = 50.0f
                 val intrinsicWidth: Float
-
                 init {
                      val paint = Paint()
                      paint.textSize = textSizeInPixel
@@ -154,7 +151,6 @@ abstract class SwipeItem (
                      paint.getTextBounds(title, 0, title.length, titleBounds)
                      intrinsicWidth = titleBounds.width() + 2 * horizontalPadding
                 }
-
                 fun draw(canvas: Canvas, rect: RectF) {
                      if (src != 0) {
                           val bitmap = ContextCompat.getDrawable(context, src)?.let { drawable(it) }
@@ -169,9 +165,7 @@ abstract class SwipeItem (
                      }
                      clickableRegion = rect
                 }
-
                 private fun drawable(drawable: Drawable): Bitmap {
-
                      val bitmap: Bitmap =
                           if (drawable.intrinsicWidth <= 0 || drawable.intrinsicHeight <= 0) {
                                Bitmap.createBitmap(
@@ -186,7 +180,6 @@ abstract class SwipeItem (
                                     Bitmap.Config.ARGB_8888
                                )
                           }
-
                      val canvas = Canvas(bitmap)
                      drawable.setBounds(0, 0, canvas.width, canvas.height)
                      drawable.draw(canvas)

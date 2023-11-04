@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.house.MyHouseFragment">
+    tools:context=".presentation.house.MyHouseFragment">
 
 
     <androidx.appcompat.widget.Toolbar
