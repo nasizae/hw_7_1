@@ -2,7 +2,6 @@ package com.example.myapplication.presentation.door
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,14 +16,16 @@ import com.example.myapplication.data.network.RetrofitClient
 import com.example.myapplication.databinding.FragmentDoorBinding
 import com.example.myapplication.domain.repository.Repository
 import com.example.myapplication.presentation.utils.SwipeItem
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DoorFragment : Fragment() {
     private lateinit var binding: FragmentDoorBinding
-    private val adapter=DoorAdapter()
+    private val adapter = DoorAdapter()
     private val retrofitClient = RetrofitClient().createApiService()
     private val remoteDataSource = RemoteDataSource(retrofitClient)
     private val repository = Repository(remoteDataSource)
-    private val doorViewModel=DoorViewModel(repository)
+    private val doorViewModel = DoorViewModel(repository)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,6 +33,7 @@ class DoorFragment : Fragment() {
         binding = FragmentDoorBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,32 +41,38 @@ class DoorFragment : Fragment() {
         initLiveData()
         initView()
     }
+
     private fun initView() {
         doorViewModel.getDoor()
     }
+
     private fun initLiveData() {
-        doorViewModel.doors.observe(viewLifecycleOwner){
-        getData(it.data)
+        doorViewModel.doors.observe(viewLifecycleOwner) {
+            getData(it.data)
         }
         doorViewModel.loading.observe(viewLifecycleOwner) { loading ->
-            if (loading){
+            if (loading) {
                 binding.shimmer.startShimmer()
-                binding.shimmer.visibility=View.VISIBLE
-            }
-            else{
+                binding.shimmer.visibility = View.VISIBLE
+            } else {
                 binding.shimmer.stopShimmer()
-                binding.shimmer.visibility=View.GONE
+                binding.shimmer.visibility = View.GONE
             }
         }
-        doorViewModel.error.observe(viewLifecycleOwner){
+        doorViewModel.error.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun getData(doorModel: List<DoorModelDTO.Data>) {
         adapter.addData(doorModel)
-        binding.rvDoor.adapter=adapter
-        binding.rvDoor.addItemDecoration(DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL))
+        binding.rvDoor.adapter = adapter
+        binding.rvDoor.addItemDecoration(
+            DividerItemDecoration(
+                requireContext(),
+                DividerItemDecoration.VERTICAL
+            )
+        )
     }
 
     private fun initSwipe() {

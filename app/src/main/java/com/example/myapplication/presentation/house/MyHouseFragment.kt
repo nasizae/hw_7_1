@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.myapplication.databinding.FragmentMyHouseBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MyHouseFragment : Fragment() {
     private lateinit var binding: FragmentMyHouseBinding
 

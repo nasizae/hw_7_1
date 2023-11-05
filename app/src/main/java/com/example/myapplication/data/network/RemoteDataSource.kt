@@ -11,7 +11,8 @@ class RemoteDataSource(private var apiService: ApiService) : BaseDataSource() {
             apiService.getCamera()
         }
     }
-    suspend fun getDoor():Result<DoorModelDTO>{
+
+    suspend fun getDoor(): Result<DoorModelDTO> {
         return getResult {
             apiService.getDoor()
         }

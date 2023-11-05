@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 class RetrofitClient {
 
     fun createApiService(): ApiService {
-        val interseptor=HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        val interseptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
         val okHttpClient = OkHttpClient.Builder()
             .addInterceptor(interseptor)
@@ -20,7 +20,8 @@ class RetrofitClient {
             .build()
 
         val retrofitClient = Retrofit.Builder()
-            .baseUrl("http://cars.cprogroup.ru/api/rubetek/").addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("http://cars.cprogroup.ru/api/rubetek/")
+            .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient).build()
 
         return retrofitClient.create(ApiService::class.java)
